@@ -51,11 +51,16 @@ module "eks" {
   cluster_endpoint_private_access = true
 
     access_entries = {
-    admin = {
-      kubernetes_groups = ["cluster-admin"]
-      principal_arn     = "arn:aws:iam::388252588517:user/admin"
-    }
+  admin = {
+    principal_arn     = "arn:aws:iam::388252588517:user/admin"
+    kubernetes_groups = ["system:masters"]
   }
+
+  ec2_instance = {
+    principal_arn     = "arn:aws:iam::388252588517:role/infrarole"
+    kubernetes_groups = ["system:masters"]
+  }
+}
 
 
   tags = {
