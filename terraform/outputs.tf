@@ -9,4 +9,3 @@ output "cluster_endpoint" {
 output "region" {
   value = var.aws_region
 }
-
