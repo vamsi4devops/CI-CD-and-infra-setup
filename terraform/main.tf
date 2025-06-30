@@ -50,15 +50,13 @@ module "eks" {
   cluster_endpoint_public_access  = true
   cluster_endpoint_private_access = true
 
-  manage_aws_auth = true
-
-  aws_auth_users = [
-    {
-      userarn  = "arn:aws:iam::388252588517:user/admin"
-      username = "admin"
-      groups   = ["system:masters"]
+    access_entries = {
+    admin = {
+      kubernetes_groups = ["cluster-admin"]
+      principal_arn     = "arn:aws:iam::388252588517:user/admin"
     }
-  ]
+  }
+
 
   tags = {
     Environment = "dev"
