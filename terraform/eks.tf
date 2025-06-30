@@ -8,11 +8,20 @@ module "eks" {
 
   eks_managed_node_groups = {
     default = {
-      desired_size = 2
-      max_size     = 3
-      min_size     = 1
-      instance_types = ["t3.medium"]
+      desired_size    = 2
+      max_size        = 3
+      min_size        = 1
+      instance_types  = ["t3.medium"]
     }
   }
-}
 
+  manage_aws_auth_configmap = true
+
+  aws_auth_users = [
+    {
+      userarn  = "arn:aws:iam::388252588517:user/admin"
+      username = "admin"
+      groups   = ["system:masters"]
+    }
+  ]
+}
