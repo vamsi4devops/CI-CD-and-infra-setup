@@ -5,4 +5,3 @@ variable "aws_region" {
 variable "cluster_name" {
   default = "devops-backend-cluster"
 }
-
