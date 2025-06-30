@@ -1,7 +1,4 @@
-variable "aws_region" {
-  default = "us-east-2"
+variable "region" {
+  default = "ap-south-1"
 }
 
-variable "cluster_name" {
-  default = "devops-backend-cluster"
-}
