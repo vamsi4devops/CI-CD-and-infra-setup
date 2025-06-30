@@ -13,7 +13,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.1.0"
@@ -28,7 +27,6 @@ module "vpc" {
   enable_nat_gateway = true
   single_nat_gateway = true
 }
-
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
@@ -52,16 +50,15 @@ module "eks" {
   cluster_endpoint_public_access  = true
   cluster_endpoint_private_access = true
 
- manage_aws_auth = true
+  manage_aws_auth = true
 
-aws_auth_users = [
-  {
-    userarn  = "arn:aws:iam::388252588517:user/admin"
-    username = "admin"
-    groups   = ["system:masters"]
-  }
-]
-
+  aws_auth_users = [
+    {
+      userarn  = "arn:aws:iam::388252588517:user/admin"
+      username = "admin"
+      groups   = ["system:masters"]
+    }
+  ]
 
   tags = {
     Environment = "dev"
